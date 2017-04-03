@@ -1,18 +1,33 @@
 import java.util.*;
 
+public class Main{
+	public static void main(String[] args) {
+		Neuron A = new Neuron(0);
+		Neuron B = new Neuron(0);
+		
+		OPNeuron And = new OPNeuron(A, B, 0.6);
+		OPNeuron Or = new OPNeuron(A, B, 1.1);
+		OPNeuron Xor = new OPNeuron(And, Or);
+
+		System.out.println(And.toString());
+		System.out.println(Or.toString());
+		System.out.println(Xor.toString());
+	}
+}
+
 class Neuron{
 	public int value;
-	public float sinaptics;
+	public double sinaptics;
 
 	public Neuron(int x){
 	value = x;
 	}
 
-	public void setSinaptics(float w){
+	public void setSinaptics(double w){
 		sinaptics = w;
 	}
 
-	public float mult(){
+	public double mult(){
 		return value*sinaptics;
 	}
 }
@@ -21,7 +36,7 @@ class OPNeuron{
 	public double result;
 	public int bool;
 
-	public OPNeuron(Neuron A, Neuron B, float OPSinaptic){
+	public OPNeuron(Neuron A, Neuron B, double OPSinaptic){
 		A.setSinaptics(OPSinaptic);
 		B.setSinaptics(OPSinaptic);
 		result = (A.mult()) + (B.mult());
@@ -39,5 +54,9 @@ class OPNeuron{
 		}else{
 			bool = 0;
 		}
+	}
+
+	public String toString(){
+		return "Resultado final: " + bool;
 	}
 }
