@@ -18,19 +18,26 @@ class Neuron{
 }
 
 class OPNeuron{
-	public float result;
+	public double result;
+	public int bool;
 
 	public OPNeuron(Neuron A, Neuron B, float OPSinaptic){
 		A.setSinaptics(OPSinaptic);
 		B.setSinaptics(OPSinaptic);
 		result = (A.mult()) + (B.mult());
+		testOP();
 	}
 
-	public int testOP(){
+	public OPNeuron(OPNeuron Op1, OPNeuron Op2){
+		result = ((Op1.bool)*(-2)) + ((Op2.bool)*1.1);
+		testOP();
+	}
+
+	public void testOP(){
 		if(result > 1){
-			return 1;
+			bool = 1;
 		}else{
-			return 0;
+			bool = 0;
 		}
 	}
 }
